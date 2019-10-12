@@ -1,6 +1,6 @@
 # LIRI-Bot
 
-Overview
+### Overview
 
 In this assignment, you will make LIRI. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
@@ -26,7 +26,8 @@ In order to meet the Employer Competitive standards and be ready to show your ap
   - Clearly list the technologies used in the app
   - State your role in the app development
 
-**Commits**
+## Commits
+
   Having an active and healthy commit history on GitHub is important for your future job search. It is also extremely important for       making sure your work is saved in your repository. If something breaks, committing often ensures you are able to go back to a working   version of your code.
 
 - Committing often is a signal to employers that you are actively working on your code and learning.
@@ -38,176 +39,80 @@ In order to meet the Employer Competitive standards and be ready to show your ap
 - We would like you to have well over 200 commits by graduation, so commit early and often!
 
 
-**Submission on BCS
-
+## Submission on BCS
 Please submit the link to the Github Repository!
 
-
-Instructions
-
-
+## Instructions
 Navigate to the root of your project and run npm init -y — this will initialize a package.json file for your project. The package.json file is required for installing third party npm packages and saving their version numbers. If you fail to initialize a package.json file, it will be troublesome, and at times almost impossible for anyone else to run your code after cloning your project.
 
+- Make a .gitignore file and add the following lines to it. This will tell git not to track these files, and thus they won't be      committed to Github.
 
-Make a .gitignore file and add the following lines to it. This will tell git not to track these files, and thus they won't be committed to Github.
+ - node_modules
+ - .DS_Store
+ - .env
 
+- Make a JavaScript file named keys.js.
+  - Inside keys.js your file will look like this:
+  - console.log('this is loaded');
+  - exports.spotify = {
+    id: process.env.SPOTIFY_ID,
+    secret: process.env.SPOTIFY_SECRET
+    };
 
-node_modules
-.DS_Store
-.env
-
-Make a JavaScript file named keys.js.
-
-
-Inside keys.js your file will look like this:
-
-console.log('this is loaded');
-
-exports.spotify = {
-  id: process.env.SPOTIFY_ID,
-  secret: process.env.SPOTIFY_SECRET
-};
-
-Next, create a file named .env, add the following to it, replacing the values with your API keys (no quotes) once you have them:
+- Next, create a file named .env, add the following to it, replacing the values with your API keys (no quotes) once you have them:
 
 # Spotify API keys
 
-SPOTIFY_ID=your-spotify-id
-SPOTIFY_SECRET=your-spotify-secret
-
-
+- SPOTIFY_ID=your-spotify-id
+- SPOTIFY_SECRET=your-spotify-secret
 
 This file will be used by the dotenv package to set what are known as environment variables to the global process.env object in node. These are values that are meant to be specific to the computer that node is running on, and since we are gitignoring this file, they won't be pushed to github — keeping our API key information private.
 
-
 If someone wanted to clone your app from github and run it themselves, they would need to supply their own .env file for it to work.
 
-
-
-
-Make a file called random.txt.
-
-
-Inside of random.txt put the following in with no extra characters or white space:
-
-spotify-this-song,"I Want it That Way"
-
-
-
-
-
-Make a JavaScript file named liri.js.
-
-
-At the top of the liri.js file, add code to read and set any environment variables with the dotenv package:
-
-
-require("dotenv").config();
-
-Add the code required to import the keys.js file and store it in a variable.
-
-  var keys = require("./keys.js");
-
-
-You should then be able to access your keys information like so
-var spotify = new Spotify(keys.spotify);
-
-
-
-
-Make it so liri.js can take in one of the following commands:
-
-
-concert-this
-
-
-spotify-this-song
-
-
-movie-this
-
-
-do-what-it-says
-
-
-
-
-
-What Each Command Should Do
-
-
-node liri.js concert-this <artist/band name here>
-
+- Make a file called random.txt.
+- Inside of random.txt put the following in with no extra characters or white space:
+- spotify-this-song,"I Want it That Way"
+- Make a JavaScript file named liri.js.
+- At the top of the liri.js file, add code to read and set any environment variables with the dotenv package:
+  - require("dotenv").config();
+  - Add the code required to import the keys.js file and store it in a variable.
+  - var keys = require("./keys.js");
+  - You should then be able to access your keys information like so
+    var spotify = new Spotify(keys.spotify);
+  - Make it so liri.js can take in one of the following commands:
+    - concert-this
+    - spotify-this-song
+    - movie-this
+    - do-what-it-says
+    - What Each Command Should Do
+    - node liri.js concert-this <artist/band name here>
 
 This will search the Bands in Town Artist Events API ("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp") for an artist and render the following information about each event to the terminal:
 
-
-Name of the venue
-
-
-Venue location
-
-
-Date of the Event (use moment to format this as "MM/DD/YYYY")
-
-
-
-
-Important: There is no need to sign up for a Bands in Town api_id key. Use the codingbootcamp as your app_id. For example, the URL used to search for "Celine Dion" would look like the following:
-
-https://rest.bandsintown.com/artists/celine+dion/events?app_id=codingbootcamp
-
+- Name of the venue
+- Venue location
+- Date of the Event (use moment to format this as "MM/DD/YYYY")
+- Important: There is no need to sign up for a Bands in Town api_id key. Use the codingbootcamp as your app_id. For example, the URL       used to search for "Celine Dion" would look like the following:
+    - https://rest.bandsintown.com/artists/celine+dion/events?app_id=codingbootcamp
+- node liri.js spotify-this-song '<song name here>'
+- This will show the following information about the song in your terminal/bash window
+- Artist(s)
+- The song's name
+- A preview link of the song from Spotify
+- The album that the song is from
+- If no song is provided then your program will default to "The Sign" by Ace of Base.
+- You will utilize the node-spotify-api package in order to retrieve song information from the Spotify API.
+- The Spotify API requires you sign up as a developer to generate the necessary credentials. You can follow these steps in order to       generate a client id and client secret:
 
 
+1. Step One: Visit https://developer.spotify.com/my-applications/#!/
+2. Step Two: Either login to your existing Spotify account or create a new one (a free account is fine) and log in.
+3. Step Three: Once logged in, navigate to https://developer.spotify.com/my-applications/#!/applications/create to register a new          application to be used with the Spotify API. You can fill in whatever you'd like for these fields. When finished, click the              "complete" button.
+4. Step Four: On the next screen, scroll down to where you see your client id and client secret. Copy these values down somewhere,          you'll need them to use the Spotify API and the node-spotify-api package.
 
-
-node liri.js spotify-this-song '<song name here>'
-
-
-This will show the following information about the song in your terminal/bash window
-
-
-Artist(s)
-
-
-The song's name
-
-
-A preview link of the song from Spotify
-
-
-The album that the song is from
-
-
-
-
-If no song is provided then your program will default to "The Sign" by Ace of Base.
-
-
-You will utilize the node-spotify-api package in order to retrieve song information from the Spotify API.
-
-
-The Spotify API requires you sign up as a developer to generate the necessary credentials. You can follow these steps in order to generate a client id and client secret:
-
-
-Step One: Visit https://developer.spotify.com/my-applications/#!/
-
-
-Step Two: Either login to your existing Spotify account or create a new one (a free account is fine) and log in.
-
-
-Step Three: Once logged in, navigate to https://developer.spotify.com/my-applications/#!/applications/create to register a new application to be used with the Spotify API. You can fill in whatever you'd like for these fields. When finished, click the "complete" button.
-
-
-Step Four: On the next screen, scroll down to where you see your client id and client secret. Copy these values down somewhere, you'll need them to use the Spotify API and the node-spotify-api package.
-
-
-
-
-node liri.js movie-this '<movie name here>'
-
-
-This will output the following information to your terminal/bash window:
+- node liri.js movie-this '<movie name here>'
+- This will output the following information to your terminal/bash window:
   * Title of the movie.
   * Year the movie came out.
   * IMDB Rating of the movie.
@@ -218,78 +123,33 @@ This will output the following information to your terminal/bash window:
   * Actors in the movie.
 
 
-If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+- If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+- If you haven't watched "Mr. Nobody," then you should: http://www.imdb.com/title/tt0485947/
+- It's on Netflix!
+- You'll use the axios package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API       key. You may use trilogy.
+- node liri.js do-what-it-says
+- Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+- It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
+- Edit the text in random.txt to test out the feature for movie-this and concert-this.
 
+## BONUS
+- In addition to logging the data to your terminal/bash window, output the data to a .txt file called log.txt.
+- Make sure you append each command you run to the log.txt file.
+- Do not overwrite your file each time you run a command.
 
-If you haven't watched "Mr. Nobody," then you should: http://www.imdb.com/title/tt0485947/
+**Reminder: Submission on BCS
+**Please submit the link to the Github Repository!
 
-
-It's on Netflix!
-
-
-
-
-You'll use the axios package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use trilogy.
-
-
-
-
-node liri.js do-what-it-says
-
-
-Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
-
-
-It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
-
-
-Edit the text in random.txt to test out the feature for movie-this and concert-this.
-
-
-
-
-
-
-
-BONUS
-
-
-In addition to logging the data to your terminal/bash window, output the data to a .txt file called log.txt.
-
-
-Make sure you append each command you run to the log.txt file.
-
-
-Do not overwrite your file each time you run a command.
-
-
-
-Reminder: Submission on BCS
-
-Please submit the link to the Github Repository!
-
-
-
-Minimum Requirements
+## Minimum Requirements
 Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Adding a README.md as well as adding this homework to your portfolio are required as well and more information can be found below.
 
-
-Create a README.md
+## Create a README.md
 Add a README.md to your repository describing the project. Here are some resources for creating your README.md. Here are some resources to help you along the way:
 
-
-About READMEs
-
-
-Mastering Markdown
-
-
-
-
-Add To Your Portfolio
+## Add To Your Portfolio
 After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
 
-
-One More Thing
+## One More Thing
 If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
+
 Good Luck!
