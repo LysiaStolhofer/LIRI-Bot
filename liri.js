@@ -103,10 +103,10 @@ function getMovie() {
             console.log("Error occurred.");
         }
 
-        if (movieName === "The Secret Window") {
+        if (movieName === "The Grinch") {
             console.log("-----------------------");
             console.log(
-                "If you haven't watched 'The Secret Window,' then you should: https://www.imdb.com/title/tt0363988/?ref_=fn_al_tt_1"
+                "If you haven't watched 'The Grinch', then you should: https://www.imdb.com/title/tt0170016/?ref_=fn_al_tt_2"
             );
             console.log("It's on Netflix!");
         }
